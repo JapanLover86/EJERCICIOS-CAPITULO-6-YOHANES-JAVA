@@ -1,0 +1,244 @@
+package semana13;
+
+/**
+ *
+ * @author Andertaker
+ */
+//ORDENAMIENTO POR INTERCAMBIO El ordenamiento por intercambio o bubble sort funciona de la siguiente manera: En relación a lo anterior, podemos decir que el algoritmo bubble sort consiste en comparar pares de elementos adyacentes e intercambiarlos entre sí hasta que estén todos ordenados; este método también es conocido como intercambio directo.
+public class Main {
+   
+
+    public static void main(String[] args) {
+        // El arreglo
+        int[] arreglo = {30, 28, 11, 96, -5, 21, 18, 12, 22, 30, 97, -1, -40, -500};
+        System.out.println("Imprimiendo arreglo antes de ordenar...");
+        for (int i : arreglo) {
+            System.out.printf("%d, ", i);
+        }
+        // Ordenamos. Recuerda: en Java los arreglos se pasan por referencia así que no necesitamos obtener
+        // el resultado, ya que dentro de la función se modifica al arreglo
+       
+        ordenarPorSeleccion(arreglo);
+
+        System.out.println("\nImprimiendo arreglo después de ordenar...");
+        for (int i : arreglo) {
+            System.out.printf("%d, ", i);
+        }
+    }
+
+    public static void ordenarPorSeleccion(int[] arreglo) {
+        for (int i = 0; i < arreglo.length - 1; i++) {
+            for (int j = i + 1; j < arreglo.length; j++) {
+                if (arreglo[i] > arreglo[j]) {
+                    // ...intercambiarlos, es decir, mover el actual a la derecha y el de la derecha al actual
+                    int temporal = arreglo[i];
+                    arreglo[i] = arreglo[j];
+                    arreglo[j] = temporal;
+                }
+            }
+        }
+    }
+}
+
+
+ORDENAMIENTO POR SELECCION
+
+package semana13;
+
+/**
+ *
+ * @author Andertaker
+ */
+class seleccion{
+ public static void ordenar(int[] arreglo){
+  int contador = 1;//solo util para contar las comparaciones
+  for (int i = 0; i < arreglo.length - 1; i++){
+   int min = i;
+   for (int j = i + 1; j < arreglo.length; j++){
+   //System.out.println("Comparacion #" + contador);
+    contador++;
+    if (arreglo[j] < arreglo[min]){
+     min = j;
+    }
+   }
+   if (i != min){
+    int aux= arreglo[i];
+    arreglo[i] = arreglo[min];
+    arreglo[min] = aux;
+   }
+  }
+ }
+ public static void imprimirLista(int[] arreglo){
+  for(int i = 0; i < arreglo.length;i++){
+   System.out.print(arreglo[i]+",");
+  }
+  System.out.println();
+ }
+ public static void main(String[] args){
+  int lista[] = {9,1,4,2,8,3,5,6,7,0};
+  System.out.print("Lista desordenada: ");
+  imprimirLista(lista);
+  
+  ordenar(lista);
+
+  System.out.print("Lista ordenada: ");
+  imprimirLista(lista);
+ }
+}
+
+
+ORDENAMIENTO POR INSERCION
+
+package semana13;
+
+/**
+ *
+ * @author Andertaker
+ */
+//ORDENAMIENTO POR INSERCION El ordenamiento por inserción es una manera muy natural de ordenar para un ser humano, y puede usarse fácilmente para ordenar un mazo de cartas numeradas en forma arbitraria.
+public class OrdenamientoInsercion {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        OrdenamientoInsercion orden = new OrdenamientoInsercion();
+        int[] nums = {1,4,9,59,23,26,20,1,23,56,7};
+        int[] ordenarInsercion = orden.ordenarInsercion(nums);
+        for (int i = 0; i < ordenarInsercion.length; i++) {
+            System.out.println(ordenarInsercion[i]);            
+        }
+    }
+    public int[] ordenarInsercion(int[] array){
+        int aux;
+        for (int i = 1; i < array.length; i++) {
+            aux = array[i];
+            for (int j = i-1; j >=0 && array[j]>aux; j--) {
+                array[j+1]=array[j];
+                array[j]=aux;
+            }
+        }
+        return array;
+    }
+}
+
+ORDENAMIENTO POR SHELL
+
+package semana13;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Andertaker
+ */
+//ORDENAMIENTO POR SHELL El ordenamiento Shell es un algoritmo de ordenamiento. El método se denomina Shell en honor de su inventor Donald Shell.
+public class ShellSort {
+   public static void main(String[] args){
+    Scanner teclado = new Scanner(System.in);
+    int Arreglo[]=new int [20];
+        int numero,i,j,k,incremento,aux;
+        System.out.print("Ingrese dimension del arreglo: ");
+        numero=teclado.nextInt();
+     
+        for(i=1;i<=numero;i++){
+            System.out.print("A["+i+"]= ");
+            Arreglo[i]=teclado.nextInt();
+        }
+     
+     
+        incremento=numero/2;
+ 
+ while(incremento>0){
+  for(i=incremento+1;i<=numero;i++){
+   j=i-incremento;
+   while(j>0){
+    if(Arreglo[j]>=Arreglo[j+incremento]){
+     aux = Arreglo[j];
+     Arreglo[j] = Arreglo[j+incremento];
+     Arreglo[j+incremento] = aux;
+    }
+    else{
+      j=0;
+     }
+    j=j-incremento;
+   }
+  }
+  incremento=incremento/2;
+ }
+     
+     
+     System.out.println("EL ARREGLO ORDENADO");
+        for(i=1;i<=numero;i++){
+            System.out.print(" "+Arreglo[i]);
+         
+        }
+ 
+ 
+ 
+ 
+}
+}
+
+ORDENAMIENTO  QUICKSHORT
+
+package semana13;
+
+/**
+ *
+ * @author Andertaker
+ */
+//ORDENAMIENTO RAPIDO El ordenamiento rápido es un algoritmo de ordenacion creado por el científico británico en computación C. A. R. Hoare
+public class QuickSort {
+        
+        private static int vec[]={20,12,28,24,8,4,16};
+        
+        public static void main(String[] args) {
+                System.out.println("Vector original");
+                imprimirVector(vec);
+                ordenacionRapida(vec);
+                System.out.println("\nVector ordenado");
+                imprimirVector(vec);
+        }
+
+        public static void ordenacionRapida(int vec[]){
+                final int N=vec.length;
+                quickSort(vec, 0, N-1);
+        }
+        
+        public static void quickSort(int vec[], int inicio, int fin){
+                if(inicio>=fin) return;
+                int pivote=vec[inicio];
+                int elemIzq=inicio+1;
+                int elemDer=fin;
+                while(elemIzq<=elemDer){
+                        while(elemIzq<=fin && vec[elemIzq]<pivote){
+                                elemIzq++;
+                        }
+                        while(elemDer>inicio && vec[elemDer]>=pivote){
+                                elemDer--;
+                        }
+                        if(elemIzq<elemDer){
+                                int temp=vec[elemIzq];
+                                vec[elemIzq]=vec[elemDer];
+                                vec[elemDer]=temp;
+                        }
+                }
+                
+                if(elemDer>inicio){
+                        int temp=vec[inicio];
+                        vec[inicio]=vec[elemDer];
+                        vec[elemDer]=temp;
+                }
+                quickSort(vec, inicio, elemDer-1);
+                quickSort(vec, elemDer+1, fin);
+        }
+        
+        public static void imprimirVector(int vec[]){
+                for(int i=0;i<vec.length;i++){
+                        System.out.print(vec[i]+" ");
+                }
+        }
+        
+}
+
